@@ -13,6 +13,7 @@ class Form extends Component {
     quantity: '',
     unit: '',
     price: '',
+    showErrors: false,
   };
 
   handleChange = (event) => {
@@ -21,7 +22,19 @@ class Form extends Component {
 
   handleSubmit = () => {
     const {list, product, quantity, unit, price} = this.state
-    this.props.addProduct({ product, quantity, unit, price }, list)
+    if (!list || !product || !quantity || !unit) {
+      this.setState({ showErrors: true })
+    } else {
+      this.props.addProduct({ product, quantity, unit, price }, list)
+      this.setState({
+        list: '',
+        product: '',
+        quantity: '',
+        unit: '',
+        price: '',
+        showErrors: false,
+      });
+    }
   }
 
   render() {
@@ -34,6 +47,7 @@ class Form extends Component {
             value={this.state.list}
             onChange={this.handleChange}
             required
+            error={!this.state.list && this.state.showErrors}
           />
           <Button variant="outlined" onClick={this.handleSubmit} color="secondary">Adicionar</Button>
         </div>
@@ -44,6 +58,7 @@ class Form extends Component {
             value={this.state.product}
             onChange={this.handleChange}
             required
+            error={!this.state.product && this.state.showErrors}
           />
           <TextField
             label="quantidade"
@@ -51,6 +66,7 @@ class Form extends Component {
             value={this.state.quantity}
             onChange={this.handleChange}
             required
+            error={!this.state.quantity && this.state.showErrors}
           />
           <TextField
             select
@@ -59,6 +75,7 @@ class Form extends Component {
             value={this.state.unit}
             onChange={this.handleChange}
             required
+            error={!this.state.unit && this.state.showErrors}
           >
             {units.map(option => (
               <MenuItem key={option} value={option}>{option}</MenuItem>
