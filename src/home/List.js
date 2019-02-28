@@ -10,6 +10,7 @@ const List = () => (
   <CustomCard
     containerClass="list-container"
     footer={<ListFooter />}
+    link="/lista"
   >
     <div>
       <p className="title">Mês</p>
