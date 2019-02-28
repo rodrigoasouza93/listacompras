@@ -35,6 +35,7 @@ CustomCard.propTypes = {
   containerClass: PropTypes.string.isRequired,
   children: PropTypes.element.isRequired,
   footer: PropTypes.element,
+  link: PropTypes.string.isRequired,
 }
 
 export default CustomCard;
