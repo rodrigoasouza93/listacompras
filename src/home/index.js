@@ -1,14 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import './home.css';
 import NewList from './NewList';
 import List from './List';
-import { getListTotal, getClosedItems, getOpenedItems } from '../store/reducers/list'
+import { getListTotal, getClosedItems, getOpenedItems } from '../store/reducers/list';
+import { Creators as ListActions } from '../store/actions/list';
 
 const Home = (props) => (
   <div className="page-container">  
-    <NewList />
+    <NewList newList={props.newList}/>
 
     { props.list.items.length > 0 &&
       <List 
@@ -26,6 +28,8 @@ const mapStateToProps = state => ({
   total: getListTotal(state),
   openedItems: getOpenedItems(state),
   closedItems: getClosedItems(state),
-})
+});
 
-export default connect(mapStateToProps, null)(Home);
+const mapDispatchToProps = dispatch => bindActionCreators(ListActions, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
