@@ -15,8 +15,8 @@ const List = (props) => (
     <div>
       <p className="title">{props.list}</p>
       <div className="list-card-body">
-        <ListItem icon={faShoppingBasket} text="1 item(s) Restante" />
-        <ListItem icon={faCheck} text="2 item(s) Comprados" />
+        <ListItem icon={faShoppingBasket} text={`${props.openedItems} item(s) Restante`} />
+        <ListItem icon={faCheck} text={`${props.closedItems} item(s) Comprados`} />
       </div>
     </div>
   </CustomCard>
