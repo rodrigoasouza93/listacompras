@@ -6,14 +6,14 @@ import ListFooter from './ListFooter';
 import ListItem from './ListItem';
 import './list.css';
 
-const List = () => (
+const List = (props) => (
   <CustomCard
     containerClass="list-container"
-    footer={<ListFooter />}
+    footer={<ListFooter total={props.total}/>}
     link="/lista"
   >
     <div>
-      <p className="title">Mês</p>
+      <p className="title">{props.list}</p>
       <div className="list-card-body">
         <ListItem icon={faShoppingBasket} text="1 item(s) Restante" />
         <ListItem icon={faCheck} text="2 item(s) Comprados" />

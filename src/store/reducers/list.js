@@ -1,3 +1,4 @@
+import { createSelector } from 'reselect'
 import { Types } from '../actions/list';
 
 const initialState = {
@@ -23,3 +24,8 @@ export default function list(state=initialState, action) {
       return state;
   }
 }
+
+export const getListTotal = createSelector(
+  state => state.list.items,
+  items => items.reduce((total, item) => total + item.total, 0),
+);
