@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect'
+import uuidv1 from 'uuid/v1';
 import { Types } from '../actions/list';
 
 const initialState = {
@@ -16,9 +17,14 @@ export default function list(state=initialState, action) {
         list: action.list,
         items: [ 
           ...state.items, 
-          { ...action.product, total: getItemTotal(action.product) }
+          { ...action.product, total: getItemTotal(action.product), id: uuidv1() }
         ]
       };
+    case Types.DELETE_PRODUCT:
+    return {
+      ...state,
+      items: state.items.filter(item => item.id !== action.productId)
+    }
 
     default:
       return state;
