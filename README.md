@@ -1,3 +1,10 @@
+# Overview
+
+This project is a shopping list simulator, where you can create a shopping list and add items you want to buy.
+The shopping list contains item data such as quantity and values, and displays a result of items purchased and the value of the list.
+
+# Getting Start
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
